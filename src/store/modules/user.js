@@ -53,29 +53,25 @@ const actions = {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
       // 将json 字符串转化为x-from
-      const user = querystring.stringify({ username: username.trim(), password: password })
+      const user = querystring.stringify({ userName: username.trim(), password: password })
 
       console.log(user)
 
       login(user).then(response => {
-        console.log(response)
-
-        if (response.respCode == 10000) {
-          const { respData } = response
-
-          commit('SET_TOKEN', respData.sessionId)
-
-          localStorage.setItem('id', respData.userId)
-          // 由于vuex 刷新后失效
-
-          // commit('SET_ID', respData.userId);
-
-          setToken(respData.sessionId)
+      
+        if (response.code == 0) {
+          const { token } = response;
+          // 将token放到vuex
+          commit('SET_TOKEN', token);
+          // 储存token到本地
+          localStorage.setItem('id', token);
+          // 储存token 到cookie
+          setToken(token)
         }
 
         resolve()
       }).catch(error => {
-        console.log('处理失败')
+        
         reject(error)
       })
     })
@@ -118,22 +114,12 @@ const actions = {
 
   // user logout
   logout({ commit, state, dispatch }) {
-    return new Promise((resolve, reject) => {
-      logout(state.token).then(() => {
-        commit('SET_TOKEN', '')
-        commit('SET_ROLES', [])
-        removeToken()
-        resetRouter()
-
-        // reset visited views and cached views
-        // to fixed https://github.com/PanJiaChen/vue-element-admin/issues/2485
-        dispatch('tagsView/delAllViews', null, { root: true })
-
-        resolve()
-      }).catch(error => {
-        reject(error)
-      })
-    })
+    // 情况登录信息
+    commit('SET_TOKEN', '')
+    commit('SET_ROLES', [])
+    removeToken()
+    resetRouter()
+    dispatch('tagsView/delAllViews', null, { root: true })
   },
 
   // remove token

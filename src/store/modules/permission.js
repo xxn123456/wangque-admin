@@ -64,11 +64,7 @@ const mutations = {
 const actions = {
   generateRoutes({ commit }, roles) {
     return new Promise(resolve => {
-      const accessedRoutes = []
-
-      accessedRoutes.push(
-        { path: '*', redirect: '/404', hidden: true }
-      )
+      const accessedRoutes = [];
       commit('SET_ROUTES', accessedRoutes)
 
       resolve(accessedRoutes)

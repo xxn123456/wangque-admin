@@ -19,7 +19,6 @@
           </div>
           <div class="login-inputs">
             <div class="user">
-
               <span><i class="el-icon-user" /></span>
               <input v-model="loginForm.username" type="text" placeholder="用户名">
             </div>
@@ -60,99 +59,59 @@
 </template>
 
 <script>
-export default {
-  name: 'Login',
+  export default {
+    name: 'Login',
+    data() {
+      return {
+        loginForm: {
+          username: '',
+          password: ''
+        },
+        passwordType: 'password',
+        loading: false,
+        errorMsg: '',
+        showDialog: false
 
-  data() {
-    const validateUsername = (rule, value, callback) => {
-      if (!isvalidUsername(value)) {
-        callback(new Error('Please enter the correct user name'))
-      } else {
-        callback()
-      }
-    }
-    const validatePassword = (rule, value, callback) => {
-      if (value.length < 6) {
-        callback(new Error('The password can not be less than 6 digits'))
-      } else {
-        callback()
-      }
-    }
-    return {
-      loginForm: {
-        username: '',
-        password: ''
-      },
-      loginRules: {
-        username: [{
-          required: true,
-          trigger: 'blur',
-          validator: validateUsername
-        }],
-        password: [{
-          required: true,
-          trigger: 'blur',
-          validator: validatePassword
-        }]
-      },
-      passwordType: 'password',
-      loading: false,
-      errorMsg: '',
-      showDialog: false
-
-    }
-  },
-  watch: {
-    $route: {
-      handler: function(route) {
-        this.redirect = route.query && route.query.redirect
-      },
-      immediate: true
-    }
-
-  },
-  methods: {
-
-    showPwd() {
-      if (this.passwordType === 'password') {
-        this.passwordType = ''
-      } else {
-        this.passwordType = 'password'
       }
     },
-    handleLogin() {
-      this.loading = true
-      console.log('处理登录逻辑')
-      this.$store.dispatch('user/login', this.loginForm).then((error) => {
-        this.loading = false
-        console.log('获取登录信息')
-        this.$router.push({
-          path: '/blog/dashboard' || '/'
-        })
-      }).catch(() => {
-        console.log('错误')
-        this.loading = false
-      })
-      // 提交校验
-      // this.$refs.loginForm.validate(valid => {
-      //   if (valid) {
-      //     this.loading = true
-      //     this.$store.dispatch('LoginByUsername', this.loginForm).then(() => {
-      //       this.loading = false
-      //       this.$router.push({
-      //         path: this.redirect || '/'
-      //       })
-      //     }).catch(() => {
-      //       this.loading = false
-      //     })
-      //   } else {
-      //     console.log('error submit!!')
-      //     return false
-      //   }
-      // })
+    watch: {
+      $route: {
+        handler: function (route) {
+          this.redirect = route.query && route.query.redirect
+        },
+        immediate: true
+      }
+
+    },
+    methods: {
+
+      showPwd() {
+        if (this.passwordType === 'password') {
+          this.passwordType = ''
+        } else {
+          this.passwordType = 'password'
+        }
+      },
+      handleLogin() {
+        if(this.loginForm.username!=""||this.loginForm.password!=""){
+          this.loading = true;
+            this.$store.dispatch('user/login', this.loginForm).then((error) => {
+              this.loading = false
+              this.$router.push({
+                path: '/blog/dashboard' || '/'
+              })
+            }).catch(() => {
+              this.loading = false
+            })
+
+        }else{
+             this.$message('用户名或者密码不能为空');
+        }
+
+    
+      }
     }
   }
-}
 
 </script>
 

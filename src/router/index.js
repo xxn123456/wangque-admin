@@ -82,7 +82,7 @@ export const constantRoutes = [{
       component: () =>
               import ('@/views/wangque/asy/index.vue'),
       name: '首页',
-      meta: { title: '数据分析', icon: 'asy' }
+      meta: { title: '数据分析', icon: 'asy', affix: true}
     },
     {
       path: 'homeSwiper',
