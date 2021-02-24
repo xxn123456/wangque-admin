@@ -11,31 +11,25 @@
     <div class="right-menu">
       <template v-if="device!=='mobile'">
         <!-- <search id="header-search" class="right-menu-item" /> -->
+        
 
-        <!-- <error-log class="errLog-container right-menu-item hover-effect" />
+        <error-log class="errLog-container right-menu-item hover-effect" /> 
 
         <screenfull id="screenfull" class="right-menu-item hover-effect" />
 
         <el-tooltip content="Global Size" effect="dark" placement="bottom">
           <size-select id="size-select" class="right-menu-item hover-effect" />
-        </el-tooltip> -->
+        </el-tooltip>
+         <div class="avatar-wrapper errLog-container right-menu-item hover-effect">
+          <img :src="userLogo" class="user-avatar">
+        
+        </div>
+
+          <div class="errLog-container right-menu-item hover-effect">注销</div>
+       
+       
 
       </template>
-      <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
-        <div class="avatar-wrapper">
-          <img :src="userLogo" class="user-avatar">
-          <i class="el-icon-caret-bottom" />
-        </div>
-        <el-dropdown-menu slot="dropdown">
-          <router-link to="/dashboard">
-            <el-dropdown-item>配置用户信息</el-dropdown-item>
-          </router-link>
-
-          <el-dropdown-item divided @click.native="logout">
-            <span style="display:block;">注销</span>
-          </el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
     </div>
   </div>
 </template>
@@ -143,9 +137,12 @@ export default {
     }
 
     .right-menu {
+      width:200px;
       float: right;
       height: 100%;
       line-height: 50px;
+      font-size: 16px;
+      color: #555555;
 
       &:focus {
         outline: none;
@@ -155,7 +152,6 @@ export default {
         display: inline-block;
         padding: 0 8px;
         height: 100%;
-        font-size: 18px;
         color: #5a5e66;
         vertical-align: text-bottom;
 

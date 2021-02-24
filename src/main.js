@@ -19,6 +19,11 @@ import './utils/error-log' // error log
 
 import * as filters from './filters' // global filters
 
+
+// 表格提示头
+import promptMessage from '@/components/tableTip/index.js'
+Vue.use(promptMessage)
+
 // 导入表格
 
 /**

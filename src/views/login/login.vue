@@ -64,8 +64,8 @@
     data() {
       return {
         loginForm: {
-          username: '',
-          password: ''
+          username: '10086',
+          password: '123456'
         },
         passwordType: 'password',
         loading: false,
@@ -99,7 +99,8 @@
               this.loading = false
               this.$router.push({
                 path: '/blog/dashboard' || '/'
-              })
+              });
+               this.$store.dispatch('user/getInfo');
             }).catch(() => {
               this.loading = false
             })

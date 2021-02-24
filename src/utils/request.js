@@ -24,7 +24,8 @@ service.interceptors.request.use(
     //   config.headers['X-Token'] = getToken()
     // }
 
-    config.headers.common.Authorization = getToken()
+    config.headers.common.Authorization = "Bearer " + getToken();
+   
     return config
   },
   error => {

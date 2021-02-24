@@ -6,13 +6,9 @@ import querystring from 'querystring'
 const state = {
   userId: '',
   token: getToken(),
-  name: '',
-  avatar: '',
+  user: {},
   introduction: '',
-  roles: [],
-  nikeName: '用户名称',
-  userPic: '',
-  layout: null
+  roles: []
 }
 
 const mutations = {
@@ -23,11 +19,8 @@ const mutations = {
   SET_INTRODUCTION: (state, introduction) => {
     state.introduction = introduction
   },
-  SET_NAME: (state, name) => {
-    state.name = name
-  },
-  SET_AVATAR: (state, avatar) => {
-    state.avatar = avatar
+  SET_USER: (state, name) => {
+    state.user = user
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles
@@ -38,12 +31,7 @@ const mutations = {
   SET_LAYOUT: (state, data) => {
     state.layout = data
   },
-  SET_NICKNAME: (state, data) => {
-    state.nikeName = data
-  },
-  SET_USERPIC: (state, data) => {
-    state.userPic = data
-  }
+ 
 
 }
 
@@ -58,19 +46,26 @@ const actions = {
       console.log(user)
 
       login(user).then(response => {
+        console.log("登录成")
       
-        if (response.code == 0) {
+        if (response.code == 200) {
+          console.log("第一步")
           const { token } = response;
           // 将token放到vuex
-          commit('SET_TOKEN', token);
-          // 储存token到本地
-          localStorage.setItem('id', token);
+          commit('SET_TOKEN',token)
           // 储存token 到cookie
-          setToken(token)
+          setToken(token);
+           // 登录成功获取用户信息
+   
         }
 
         resolve()
       }).catch(error => {
+
+        this.$message('储存token失败');
+
+
+        
         
         reject(error)
       })
@@ -78,35 +73,19 @@ const actions = {
   },
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      getInfo(state.token).then(response => {
-        const { respData } = response
-
+      getInfo().then(response => {
+        const { userInfo } = response
         if (!respData) {
           reject('认证失败，请重新登录')
         }
 
-        const { roles, name, avatar, introduction, nikeName, userPic } = respData
-
-        // roles must be a non-empty array
-        if (!roles || roles.length <= 0) {
-          reject('getInfo: roles must be a non-null array!')
-        }
-
-        commit('SET_ROLES', roles)
-        commit('SET_NAME', name)
-        commit('SET_AVATAR', avatar)
-        // 获取用户简介
-        commit('SET_INTRODUCTION', introduction)
-        // 获取用户信息
-        commit('SET_NICKNAME', nikeName)
-        // 获取用户图片
-
-        commit('SET_USERPIC', userPic)
-
-        localStorage.setItem('menu', JSON.stringify(respData))
-
+        commit('SET_USER', userInfo);
+        // const { roles, name, avatar, introduction, nikeName, userPic } = respData;
+ 
         resolve(respData)
       }).catch(error => {
+
+        this.$message('获取用户信息失败');
         reject(error)
       })
     })

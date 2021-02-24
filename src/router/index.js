@@ -102,16 +102,6 @@ export const constantRoutes = [{
       }
     },
     {
-      path: 'nav',
-      component: () =>
-          import('@/views/wangque/nav/index.vue'),
-      name: 'nav',
-      meta: {
-        title: '网站菜单',
-        icon: 'nav'
-      }
-    },
-    {
       path: 'articleType',
       component: () =>
           import('@/views/wangque/articleType/index.vue'),

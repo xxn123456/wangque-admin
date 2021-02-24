@@ -12,3 +12,16 @@ export function login(data) {
     data
   })
 }
+
+// 获取用户信息
+export function getInfo(data) {
+  return request({
+    url: '/user/getUserInfo',
+    // 此处admin是代理
+    method: 'get',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8'
+    },
+    data
+  })
+}
