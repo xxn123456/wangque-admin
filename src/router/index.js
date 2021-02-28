@@ -35,145 +35,171 @@ import Layout from '@/layout'
  * all roles can be accessed
  */
 export const constantRoutes = [{
-  path: '/redirect',
-  component: () => import('@/layout/index.vue'),
-  hidden: true,
-  children: [{
-    path: '/redirect/:path(.*)',
-    component: () =>
+    path: '/redirect',
+    component: () => import('@/layout/index.vue'),
+    hidden: true,
+    children: [{
+      path: '/redirect/:path(.*)',
+      component: () =>
         import('@/views/redirect/index')
-  }]
-},
-{
-  path: '/login',
-  component: () =>
-      import('@/views/login/login.vue'),
-  hidden: true
-},
-{
-  path: '/auth-redirect',
-  component: () =>
-      import('@/views/login/auth-redirect'),
-  hidden: true
-},
-{
-  path: '/404',
-  component: () =>
-      import('@/views/error-page/404'),
-  hidden: true
-},
-{
-  path: '/401',
-  component: () =>
-      import('@/views/error-page/401'),
-  hidden: true
-},
-{
-  path: '/blog',
-  component: Layout,
-  redirect: '/dashboard',
-  meta: {
-    title: '博客',
-    icon: 'blog'
+    }]
   },
-  children: [
-    {
-      path: 'dashboard',
-      component: () =>
-              import ('@/views/wangque/asy/index.vue'),
-      name: '首页',
-      meta: { title: '数据分析', icon: 'asy', affix: true}
-    },
-    {
-      path: 'homeSwiper',
-      component: () =>
-              import ('@/views/wangque/ad/index.vue'),
-      name: 'homeSwiper',
-      meta: { title: '首页轮播', icon: 'ad' }
-    },
-    {
-      path: 'msg',
-      component: () =>
-          import('@/views/wangque/msg/index.vue'),
-      name: 'msg',
-      meta: {
-        title: '消息推送',
-        icon: 'msg'
-      }
-    },
-    {
-      path: 'articleType',
-      component: () =>
-          import('@/views/wangque/articleType/index.vue'),
-      name: 'articleType',
-      meta: {
-        title: '文章类别',
-        icon: 'type'
-      }
-    },
-    {
-      path: 'article',
-      component: () =>
-          import('@/views/wangque/article/index.vue'),
-      name: 'article',
-      meta: {
-        title: '文章管理',
-        icon: 'article'
-      }
-    },
-    {
-      path: 'music',
-      component: () =>
-          import('@/views/wangque/music/index.vue'),
-      name: 'music',
-      meta: {
-        title: '音乐列表',
-        icon: 'music'
-      }
-    },
-    {
-      path: 'dan',
-      component: () =>
-          import('@/views/wangque/dan/index.vue'),
-      name: 'dan',
-      meta: {
-        title: '弹幕管理',
-        icon: 'dan'
-      }
-    },
-    {
-      path: 'toYou',
-      component: () =>
-          import('@/views/wangque/toYou/index.vue'),
-      name: 'toYou',
-      meta: {
-        title: '寄语留言',
-        icon: 'toyou'
-      }
-    },
-    {
-      path: 'set',
-      component: () =>
-          import('@/views/wangque/webSet/index.vue'),
-      name: 'set',
-      meta: {
-        title: '网站资料配置',
-        icon: 'set'
-      }
-    },
-    {
-      path: 'sure',
-      component: () =>
-          import('@/views/wangque/sure/index.vue'),
-      name: 'sure',
-      meta: {
-        title: '安全监控',
-        icon: 'sure'
-      }
-    }
+  {
+    path: '/login',
+    component: () =>
+      import('@/views/login/login.vue'),
+    hidden: true
+  },
+  {
+    path: '/auth-redirect',
+    component: () =>
+      import('@/views/login/auth-redirect'),
+    hidden: true
+  },
 
-  ]
-}
+
+  {
+    path: '/blogCreate',
+    component: () =>
+      import('@/views/wangque/article/add.vue'),
+    meta: {
+      title: '发布一篇文章',
+      icon: 'blog'
+    }
+  },
+  {
+    path: '/blogEdit',
+    component: () =>
+      import('@/views/wangque/article/edit.vue'),
+    meta: {
+      title: '编辑一篇文章',
+      icon: 'blog'
+    }
+  },
+  {
+    path: '/blog',
+    component: Layout,
+    redirect: '/dashboard',
+    meta: {
+      title: '博客',
+      icon: 'blog'
+    },
+    children: [{
+        path: 'dashboard',
+        component: () =>
+          import('@/views/wangque/asy/index.vue'),
+        name: '首页',
+        meta: {
+          title: '数据分析',
+          icon: 'asy',
+          affix: true
+        }
+      },
+      {
+        path: 'homeSwiper',
+        component: () =>
+          import('@/views/wangque/ad/index.vue'),
+        name: 'homeSwiper',
+        meta: {
+          title: '首页轮播',
+          icon: 'ad'
+        }
+      },
+      {
+        path: 'msg',
+        component: () =>
+          import('@/views/wangque/msg/index.vue'),
+        name: 'msg',
+        meta: {
+          title: '消息推送',
+          icon: 'msg'
+        }
+      },
+      {
+        path: 'articleType',
+        component: () =>
+          import('@/views/wangque/articleType/index.vue'),
+        name: 'articleType',
+        meta: {
+          title: '文章类别',
+          icon: 'type'
+        }
+      },
+      {
+        path: 'article',
+        component: () =>
+          import('@/views/wangque/article/index.vue'),
+        name: 'article',
+        meta: {
+          title: '文章管理',
+          icon: 'article'
+        }
+      },
+      {
+        path: 'music',
+        component: () =>
+          import('@/views/wangque/music/index.vue'),
+        name: 'music',
+        meta: {
+          title: '音乐列表',
+          icon: 'music'
+        }
+      },
+      {
+        path: 'dan',
+        component: () =>
+          import('@/views/wangque/dan/index.vue'),
+        name: 'dan',
+        meta: {
+          title: '弹幕管理',
+          icon: 'dan'
+        }
+      },
+      {
+        path: 'toYou',
+        component: () =>
+          import('@/views/wangque/toYou/index.vue'),
+        name: 'toYou',
+        meta: {
+          title: '寄语留言',
+          icon: 'toyou'
+        }
+      },
+      {
+        path: 'set',
+        component: () =>
+          import('@/views/wangque/webSet/index.vue'),
+        name: 'set',
+        meta: {
+          title: '网站资料配置',
+          icon: 'set'
+        }
+      },
+      {
+        path: 'sure',
+        component: () =>
+          import('@/views/wangque/sure/index.vue'),
+        name: 'sure',
+        meta: {
+          title: '安全监控',
+          icon: 'sure'
+        }
+      }
+
+    ]
+  },
+  {
+    path: '/401',
+    component: () =>
+      import('@/views/error-page/401'),
+    hidden: true
+  },
+  {
+    path: '/404',
+    component: () =>
+      import('@/views/error-page/404'),
+    hidden: true
+  },
 ]
 /**
  * asyncRoutes
@@ -182,11 +208,11 @@ export const constantRoutes = [{
 export const asyncRoutes = [
 
   // 404 page must be placed at the end !!!
-  {
-    path: '*',
-    redirect: '/404',
-    hidden: true
-  }
+  // {
+  //   path: '*',
+  //   redirect: '/404',
+  //   hidden: true
+  // }
 ]
 
 const createRouter = () => new Router({

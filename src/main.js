@@ -24,6 +24,9 @@ import * as filters from './filters' // global filters
 import promptMessage from '@/components/tableTip/index.js'
 Vue.use(promptMessage)
 
+import mavonEditor from 'mavon-editor'
+Vue.use(mavonEditor)
+
 // 导入表格
 
 /**

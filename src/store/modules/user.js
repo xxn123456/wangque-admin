@@ -73,21 +73,25 @@ const actions = {
   },
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      getInfo().then(response => {
-        const { userInfo } = response
-        if (!respData) {
-          reject('认证失败，请重新登录')
-        }
+      let userRole=['admin'];
 
-        commit('SET_USER', userInfo);
-        // const { roles, name, avatar, introduction, nikeName, userPic } = respData;
+      commit('SET_ROLES',userRole);
+      resolve(userRole)
+      // getInfo().then(response => {
+      //   const { userInfo } = response
+      //   if (!respData) {
+      //     reject('认证失败，请重新登录')
+      //   }
+
+      //   commit('SET_USER', userInfo);
+      //   // const { roles, name, avatar, introduction, nikeName, userPic } = respData;
  
-        resolve(respData)
-      }).catch(error => {
+      //   resolve(respData)
+      // }).catch(error => {
 
-        this.$message('获取用户信息失败');
-        reject(error)
-      })
+      //   this.$message('获取用户信息失败');
+      //   reject(error)
+      // })
     })
   },
 

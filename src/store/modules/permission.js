@@ -56,6 +56,7 @@ const state = {
 
 const mutations = {
   SET_ROUTES: (state, routes) => {
+    console.log("同步路由",constantRoutes);
     state.addRoutes = routes
     state.routes = constantRoutes.concat(routes)
   }
@@ -64,8 +65,22 @@ const mutations = {
 const actions = {
   generateRoutes({ commit }, roles) {
     return new Promise(resolve => {
-      const accessedRoutes = [];
-      commit('SET_ROUTES', accessedRoutes)
+      // 动态挂在 错误路由
+      let adminRoutes = [
+         {
+            path: '*',
+            redirect: '/404',
+            hidden: true
+          }
+      ];
+      
+
+      let accessedRoutes;
+      accessedRoutes = adminRoutes || [];
+      console.log("装载路由")
+      commit('SET_ROUTES', accessedRoutes);
+
+      
 
       resolve(accessedRoutes)
     })
