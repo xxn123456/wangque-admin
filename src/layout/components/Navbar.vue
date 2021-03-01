@@ -25,7 +25,7 @@
         
         </div>
 
-          <div class="errLog-container right-menu-item hover-effect">注销</div>
+          <div class="errLog-container logout" @click="logout">注销</div>
        
        
 
@@ -68,7 +68,7 @@ export default {
       'device'
     ]),
     ...mapState({
-      userPic: state => state.user.userPic,
+      userPic: state => state.user.userInfo.avatar,
       menuId: state => state.tagsView.menuId
     }),
     userLogo() {
@@ -97,8 +97,8 @@ export default {
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
     },
-    async logout() {
-      await this.$store.dispatch('user/logout')
+    logout() {
+      this.$store.dispatch('user/logout');
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
     }
   }
@@ -165,29 +165,18 @@ export default {
         }
       }
 
-      .avatar-container {
-        margin-right: 30px;
-
-        .avatar-wrapper {
-          margin-top: 5px;
-          position: relative;
-
-          .user-avatar {
+      .user-avatar {
             cursor: pointer;
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            margin-top: 7px;
           }
-
-          .el-icon-caret-bottom {
-            cursor: pointer;
-            position: absolute;
-            right: -20px;
-            top: 25px;
-            font-size: 12px;
-          }
-        }
+      .logout{
+          cursor: pointer;
+        font-size: 14px;
       }
+
     }
   }
 

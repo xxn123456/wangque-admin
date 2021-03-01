@@ -1,5 +1,5 @@
 // const imgUrl ="http://192.168.16.109:8082/manage"
 
-const imgUrl = 'https://glzmh.whhealth.org.cn/manage'
+const IMGURL = 'http://localhost:3000'
 
-export default imgUrl
+export default IMGURL

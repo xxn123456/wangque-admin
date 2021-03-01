@@ -6,7 +6,7 @@ import querystring from 'querystring'
 const state = {
   userId: '',
   token: getToken(),
-  user: {},
+  userInfo: {},
   introduction: '',
   roles: []
 }
@@ -19,8 +19,8 @@ const mutations = {
   SET_INTRODUCTION: (state, introduction) => {
     state.introduction = introduction
   },
-  SET_USER: (state, name) => {
-    state.user = user
+  SET_USER: (state, info) => {
+    state.userInfo = info
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles
@@ -73,25 +73,33 @@ const actions = {
   },
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      let userRole=['admin'];
+     
+     
 
-      commit('SET_ROLES',userRole);
-      resolve(userRole)
-      // getInfo().then(response => {
-      //   const { userInfo } = response
-      //   if (!respData) {
-      //     reject('认证失败，请重新登录')
-      //   }
+       getInfo().then((res) => {
+         let {userInfo} =res;
 
-      //   commit('SET_USER', userInfo);
-      //   // const { roles, name, avatar, introduction, nikeName, userPic } = respData;
- 
-      //   resolve(respData)
-      // }).catch(error => {
+         console.log("获取到的用户信息",userInfo);
+         
+         commit('SET_USER',userInfo);
 
-      //   this.$message('获取用户信息失败');
-      //   reject(error)
-      // })
+         let userRole=['admin'];
+
+         commit('SET_ROLES',userRole);
+   
+         resolve(userRole)
+
+        
+       
+         
+      
+      }).catch(error => {
+
+        this.$message('获取用户信息失败');
+        reject(error)
+      })
+     
+     
     })
   },
 
