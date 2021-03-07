@@ -51,6 +51,12 @@ export const constantRoutes = [{
     hidden: true
   },
   {
+    path: '/test',
+    component: () =>
+      import('@/views/wangque/test/index.vue'),
+    
+  },
+  {
     path: '/auth-redirect',
     component: () =>
       import('@/views/login/auth-redirect'),

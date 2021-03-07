@@ -27,6 +27,9 @@ Vue.use(promptMessage)
 import mavonEditor from 'mavon-editor'
 Vue.use(mavonEditor)
 
+import { vueBaberrage } from 'vue-baberrage'
+Vue.use(vueBaberrage)
+
 // 导入表格
 
 /**
