@@ -71,7 +71,8 @@ export const constantRoutes = [{
     meta: {
       title: '发布一篇文章',
       icon: 'blog'
-    }
+    },
+    hidden: true
   },
   {
     path: '/blogEdit',
@@ -80,7 +81,8 @@ export const constantRoutes = [{
     meta: {
       title: '编辑一篇文章',
       icon: 'blog'
-    }
+    },
+    hidden: true
   },
   {
     path: '/blog',
@@ -90,7 +92,8 @@ export const constantRoutes = [{
       title: '博客',
       icon: 'blog'
     },
-    children: [{
+    children: [
+      {
         path: 'dashboard',
         component: () =>
           import('@/views/wangque/asy/index.vue'),
@@ -99,6 +102,28 @@ export const constantRoutes = [{
           title: '数据分析',
           icon: 'asy',
           affix: true
+        }
+      },
+
+      {
+        path: 'set',
+        component: () =>
+          import('@/views/wangque/role/index.vue'),
+        name: 'set',
+        meta: {
+          title: '角色管理',
+          icon: 'set'
+        }
+      },
+
+      {
+        path: 'set',
+        component: () =>
+          import('@/views/wangque/user/index.vue'),
+        name: 'set',
+        meta: {
+          title: '用户管理',
+          icon: 'set'
         }
       },
       {
@@ -171,16 +196,7 @@ export const constantRoutes = [{
           icon: 'toyou'
         }
       },
-      {
-        path: 'set',
-        component: () =>
-          import('@/views/wangque/webSet/index.vue'),
-        name: 'set',
-        meta: {
-          title: '网站资料配置',
-          icon: 'set'
-        }
-      },
+
       {
         path: 'sure',
         component: () =>

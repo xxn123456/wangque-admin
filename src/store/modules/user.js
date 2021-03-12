@@ -94,8 +94,9 @@ const actions = {
          
       
       }).catch(error => {
+        
 
-        this.$message('获取用户信息失败');
+        removeToken()
         reject(error)
       })
      
