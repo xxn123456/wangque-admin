@@ -28,7 +28,7 @@ module.exports = {
 
     // 打包前步骤需要修改util.setDeafult 文件中默认路径
     publicPath: './',
-    outputDir: 'admin',
+    outputDir: 'wangque_admin',
     assetsDir: 'static',
     lintOnSave: false,
     productionSourceMap: false,

@@ -105,27 +105,27 @@ export const constantRoutes = [{
         }
       },
 
-      {
-        path: 'set',
-        component: () =>
-          import('@/views/wangque/role/index.vue'),
-        name: 'set',
-        meta: {
-          title: '角色管理',
-          icon: 'set'
-        }
-      },
+      // {
+      //   path: 'set',
+      //   component: () =>
+      //     import('@/views/wangque/role/index.vue'),
+      //   name: 'set',
+      //   meta: {
+      //     title: '角色管理',
+      //     icon: 'set'
+      //   }
+      // },
 
-      {
-        path: 'set',
-        component: () =>
-          import('@/views/wangque/user/index.vue'),
-        name: 'set',
-        meta: {
-          title: '用户管理',
-          icon: 'set'
-        }
-      },
+      // {
+      //   path: 'set',
+      //   component: () =>
+      //     import('@/views/wangque/user/index.vue'),
+      //   name: 'set',
+      //   meta: {
+      //     title: '用户管理',
+      //     icon: 'set'
+      //   }
+      // },
       {
         path: 'homeSwiper',
         component: () =>
@@ -136,16 +136,16 @@ export const constantRoutes = [{
           icon: 'ad'
         }
       },
-      {
-        path: 'msg',
-        component: () =>
-          import('@/views/wangque/msg/index.vue'),
-        name: 'msg',
-        meta: {
-          title: '消息推送',
-          icon: 'msg'
-        }
-      },
+      // {
+      //   path: 'msg',
+      //   component: () =>
+      //     import('@/views/wangque/msg/index.vue'),
+      //   name: 'msg',
+      //   meta: {
+      //     title: '消息推送',
+      //     icon: 'msg'
+      //   }
+      // },
       {
         path: 'articleType',
         component: () =>
@@ -186,16 +186,16 @@ export const constantRoutes = [{
           icon: 'dan'
         }
       },
-      {
-        path: 'toYou',
-        component: () =>
-          import('@/views/wangque/toYou/index.vue'),
-        name: 'toYou',
-        meta: {
-          title: '寄语留言',
-          icon: 'toyou'
-        }
-      },
+      // {
+      //   path: 'toYou',
+      //   component: () =>
+      //     import('@/views/wangque/toYou/index.vue'),
+      //   name: 'toYou',
+      //   meta: {
+      //     title: '寄语留言',
+      //     icon: 'toyou'
+      //   }
+      // },
 
       {
         path: 'sure',

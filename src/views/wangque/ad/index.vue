@@ -26,12 +26,12 @@
         <el-table-column prop="url" label="轮播url" align="left" :formatter="Tableformatter">
         </el-table-column>
 
- <el-table-column prop="active" label="次序" align="left">
+        <el-table-column prop="active" label="次序" align="left">
         </el-table-column>
         <el-table-column prop="userId" label="创建人" align="right">
         </el-table-column>
 
-        
+
 
 
         <el-table-column prop="createdAt" label="创建时间" align="right">
@@ -39,7 +39,7 @@
 
 
 
-  
+
 
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
@@ -50,7 +50,7 @@
       </el-table>
     </div>
     <div class="page-nation">
-     
+
     </div>
 
     <el-dialog title="操作" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
@@ -64,15 +64,15 @@
         </el-form-item>
 
         <el-form-item label="轮播次序">
-                 <el-input-number v-model="form.active" @change="handleChange" :min="1" :max="5" label="描述文字"></el-input-number>
+          <el-input-number v-model="form.active" @change="handleChange" :min="1" :max="5" label="描述文字">
+          </el-input-number>
 
         </el-form-item>
 
-  
+
 
         <el-form-item label="轮播图">
-          <el-upload class="upload-demo" action="http://localhost:3000/upload/carousel"
-            multiple :limit="1"
+          <el-upload class="upload-demo" action="http://localhost:3000/upload/carousel" multiple :limit="1"
             :on-exceed="handleExceed" :file-list="form.fileList" :on-success="handleSuccess">
             <el-button size="small" type="primary">点击上传</el-button>
             <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
@@ -112,9 +112,9 @@
           id: "",
           title: "",
           url: "",
-          fileList:[],
-          userId:"1",
-          active:'1'
+          fileList: [],
+          userId: "1",
+          active: '1'
         },
         // 0代表新增操作,1代码修改操作
         submitState: 0,
@@ -146,7 +146,7 @@
 
     },
     methods: {
-    
+
       // 构建表格提示标签
       renderHeader(h, {
         column
@@ -173,7 +173,7 @@
           return cellValue
         }
       },
-    
+
       // 多选操作
       handleSelectionChange(val) {
         this.multipleSelection = val;
@@ -222,7 +222,7 @@
                   pic: el.pic,
                   url: el.url,
                   title: el.title,
-                  active:el.active,
+                  active: el.active,
                   userId: el.userId,
                   createdAt: el.createdAt
                 }
@@ -242,19 +242,21 @@
         this.dialogVisible = true;
         this.submitState = 0;
       },
-      
+
       handleExceed(files, fileList) {
         this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
       },
-      handleSuccess(response, file, fileList){
-        let {code}=response;
-        if(code=="200"){
-          this.form.pic=response.url;
+      handleSuccess(response, file, fileList) {
+        let {
+          code
+        } = response;
+        if (code == "200") {
+          this.form.pic = response.url;
           this.$message("图片上传成功");
         }
 
       },
-     
+
       // 进行编辑
       handleEdit(index, row) {
         this.dialogVisible = true;
@@ -267,13 +269,13 @@
       },
       cleanRow() {
         for (let key in this.form) {
-          if(key=="fileList"){
-              this.form[key]=[]
-          }else{
-             this.form[key] = ''
+          if (key == "fileList") {
+            this.form[key] = []
+          } else {
+            this.form[key] = ''
 
           }
-         
+
         }
       },
       // 进行删除
@@ -296,78 +298,81 @@
         })
 
       },
-       variyActive(){
+      variyActive() {
         return new Promise((resolve, reject) => {
-          let msg =qs.stringify({
-             active: this.form.active
+          let msg = qs.stringify({
+            active: this.form.active
           })
-         queryCarousel(msg).then((respone)=>{
-            let {code,state}= respone;
-            if(code=="200"){
-               resolve(state)
+          queryCarousel(msg).then((respone) => {
+            let {
+              code,
+              state
+            } = respone;
+            if (code == "200") {
+              resolve(state)
             }
 
-             })
+          })
         })
 
       },
-    
+
       async submit() {
         switch (this.submitState) {
           case 0:
-             let hasItemActive;
-             await this.variyActive().then((res)=>{
-               console.log("res",res)
-               hasItemActive=res;
+            let hasItemActive;
+            await this.variyActive().then((res) => {
+              console.log("res", res)
+              hasItemActive = res;
 
             });
-            console.log("获取的状态",hasItemActive)
+            console.log("获取的状态", hasItemActive)
 
-            if(hasItemActive=="0"){
+            if (hasItemActive == "0") {
               let msg_create = qs.stringify({
-              pic: this.form.pic,
-              title:this.form.title,
-              url: this.form.url,
-              userId :this.form.userId,
-              active: this.form.active
-              
-            });
-           
-            create(msg_create).then((res) => {
-              let {
-                data,
-                code,
-                des
-              } = res;
-              if (code == "200") {
-                this.dialogVisible = false;
-                // 刷新表格
-                this.findAll();
-              } else {
-                this.messages("新增失败")
-              }
-              if (code == "401") {
-                this.dialogVisible = false;
-                // 刷新表格
-                this.$message("超过最大轮播图限制");
-              }
-            })
+                pic: this.form.pic,
+                title: this.form.title,
+                url: this.form.url,
+                userId: this.form.userId,
+                active: this.form.active
 
-            }else{
+              });
+
+              create(msg_create).then((res) => {
+                let {
+                  data,
+                  code,
+                  des
+                } = res;
+                if (code == "200") {
+                  this.dialogVisible = false;
+                  // 刷新表格
+                  this.findAll();
+                } else {
+                  this.messages("新增失败")
+                }
+                if (code == "401") {
+                  this.dialogVisible = false;
+                  // 刷新表格
+                  this.$message("超过最大轮播图限制");
+                }
+              })
+
+            } else {
               this.$message("当前次序已经存在")
             }
-           
-            
+
+
             break;
           case 1:
 
             let msg_update = qs.stringify({
               id: this.form.id,
               pic: this.form.pic,
-              title:this.form.title,
+              title: this.form.title,
               url: this.form.url,
-              userId :this.form.userId,
-               active: this.form.active
+              userId: this.form.userId,
+              active: this.form.active
             });
 
             update(msg_update).then((res) => {
@@ -394,11 +399,11 @@
       handleClose() {
         this.dialogVisible = false;
       },
-      handleChange(val){
-        this.form.active=val;
+      handleChange(val) {
+        this.form.active = val;
 
       }
-  
+
     }
   }
 

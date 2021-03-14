@@ -1,24 +1,14 @@
 <template>
   <div class="asy">
-    <el-card class="box-card">
-          <span>12</span>
-          <h2>在线人数</h2>
-    </el-card>
-    <el-card class="box-card">
-         <span>888</span>
-          <h2>文章数</h2>
-    </el-card>
+      
+    
+        <img src="/other/jqqd.png" class="jianshe" alt="">
+        <div class="wait">
 
-     <el-card class="box-card">
-         <span>128</span>
-          <h2>弹幕</h2>
-    </el-card>
+           <h4>界面建设中,敬请期待</h4>
 
-     <el-card class="box-card">
-         <span>38</span>
-          <h2>留言</h2>
-    </el-card>
-
+        </div>
+         
 
   </div>
 
@@ -38,12 +28,23 @@
     width: 100%;
     height: 100%;
     padding: 10px;
-
-    .box-card {
-      width: 25%;
-      height: 240px;
-      float: left;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    .wait{
+      width: 100%;
+      text-align: center;
     }
+  
+    .jianshe{
+      width: 800px;
+      margin-top: 100px;
+     
+    }
+
+  
   }
 
 </style>
