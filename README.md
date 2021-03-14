@@ -25,3 +25,5 @@
 ![](http://shutiaogege.top/image/wq_admin/admin_6.png)
 
 ![](http://shutiaogege.top/image/wq_admin/admin_7.png)
+
+![](http://shutiaogege.top/image/wq_admin/admin_8.png)
