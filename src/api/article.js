@@ -86,7 +86,18 @@ export function upload(data) {
     // 此处admin是代理
     method: 'post',
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': 'multipart/form-data'
+    },
+    data
+  })
+}
+export function upBook(data) {
+  return request({
+    url: '/blog/upBook',
+    // 此处admin是代理
+    method: 'post',
+    headers: {
+      'Content-Type': 'multipart/form-data'
     },
     data
   })

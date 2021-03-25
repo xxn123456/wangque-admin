@@ -44,7 +44,8 @@
 <script>
   import {
     create,
-    upload
+    upload,
+    upBook
   } from '@/api/article.js'
   import qs from 'querystring'
   import 'mavon-editor/dist/css/index.css'
@@ -59,7 +60,9 @@
           articleTypeId: "1",
           userId: "1",
           editorContent: "",
-          book: "../other/article-pic.png"
+          bookPreview: "",
+          book:"../other/article-pic.png",
+          bookUrl:""
         },
         articleType: [{
             label: "天涯",
@@ -81,16 +84,19 @@
       saveArticle() {
         let title_text = document.getElementById('title').innerText;
 
+        
+
         this.form.title = title_text;
 
-        let msg = {
-          title: this.form.title,
-          articleTypeId: this.form.articleTypeId,
-          userId: this.form.userId,
-          content: this.form.editorContent,
+        let msg={
+          title:this.form.title,
+          articleTypeId:this.form.articleTypeId,
+          userId:this.form.userId,
+          content:this.form.editorContent,
+          book:this.form.bookUrl
         }
-        let new_msg = qs.stringify(msg);
-        create(new_msg).then((res) => {
+
+        create(qs.stringify(msg)).then((res) => {
           let {
             code
           } = res;
@@ -112,6 +118,20 @@
         fileNode.click();
         fileNode.addEventListener('change', function (ev) {
           let file= ev.target.files[0];
+          that.form.bookPreview=file;
+
+
+            let formdata = new FormData();
+           formdata.append('book', that.form.bookPreview);
+
+          upBook(formdata).then((res)=>{
+            let {code,url}=res;
+            if(code=="200"){
+                this.form.bookUrl=url
+            }
+
+
+          })
           let reader = new FileReader();
           reader.readAsDataURL(file);
          
