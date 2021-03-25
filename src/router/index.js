@@ -87,29 +87,29 @@ export const constantRoutes = [{
   {
     path: '/blog',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/homeSwiper',
     meta: {
       title: '博客',
       icon: 'blog'
     },
     children: [
-      {
-        path: 'dashboard',
-        component: () =>
-          import('@/views/wangque/asy/index.vue'),
-        name: '首页',
-        meta: {
-          title: '数据分析',
-          icon: 'asy',
-          affix: true
-        }
-      },
+      // {
+      //   path: 'dashboard',
+      //   component: () =>
+      //     import('@/views/wangque/asy/index.vue'),
+      //   name: '首页',
+      //   meta: {
+      //     title: '数据分析',
+      //     icon: 'asy',
+      //     affix: true
+      //   }
+      // },
 
       // {
-      //   path: 'set',
+      //   path: 'role',
       //   component: () =>
       //     import('@/views/wangque/role/index.vue'),
-      //   name: 'set',
+      //   name: 'role',
       //   meta: {
       //     title: '角色管理',
       //     icon: 'set'
@@ -117,10 +117,10 @@ export const constantRoutes = [{
       // },
 
       // {
-      //   path: 'set',
+      //   path: 'user',
       //   component: () =>
       //     import('@/views/wangque/user/index.vue'),
-      //   name: 'set',
+      //   name: 'user',
       //   meta: {
       //     title: '用户管理',
       //     icon: 'set'
@@ -172,7 +172,7 @@ export const constantRoutes = [{
           import('@/views/wangque/music/index.vue'),
         name: 'music',
         meta: {
-          title: '音乐列表',
+          title: '背景音乐',
           icon: 'music'
         }
       },
@@ -186,16 +186,16 @@ export const constantRoutes = [{
           icon: 'dan'
         }
       },
-      // {
-      //   path: 'toYou',
-      //   component: () =>
-      //     import('@/views/wangque/toYou/index.vue'),
-      //   name: 'toYou',
-      //   meta: {
-      //     title: '寄语留言',
-      //     icon: 'toyou'
-      //   }
-      // },
+      {
+        path: 'toYou',
+        component: () =>
+          import('@/views/wangque/msg/index.vue'),
+        name: 'toYou',
+        meta: {
+          title: '评价',
+          icon: 'toyou'
+        }
+      },
 
       {
         path: 'sure',

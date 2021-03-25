@@ -98,7 +98,7 @@
             this.$store.dispatch('user/login', this.loginForm).then((error) => {
               this.loading = false
               this.$router.push({
-                path: '/blog/dashboard' || '/'
+                path: '/blog/homeSwiper' || '/'
               });
                this.$store.dispatch('user/getInfo');
             }).catch(() => {

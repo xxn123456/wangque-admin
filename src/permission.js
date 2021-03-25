@@ -24,7 +24,7 @@ router.beforeEach(async (to, from, next) => {
   if (hasToken) {
     if (to.path === '/login') {
       next({
-        path: '/blog/dashboard'
+        path: '/blog/homeSwiper'
       })
 
     } else {
