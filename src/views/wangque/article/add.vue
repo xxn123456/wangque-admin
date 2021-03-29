@@ -47,6 +47,7 @@
     upload,
     upBook
   } from '@/api/article.js'
+  import { findAll } from "@/api/articleType.js";
   import qs from 'querystring'
   import 'mavon-editor/dist/css/index.css'
   export default {
@@ -57,25 +58,19 @@
         form: {
           id: "",
           title: "",
-          articleTypeId: "1",
+          articleTypeId: "",
           userId: "1",
           editorContent: "",
           bookPreview: "",
           book:"../other/article-pic.png",
           bookUrl:""
         },
-        articleType: [{
-            label: "天涯",
-            value: 1
-          },
-          {
-            label: "q前端",
-            value: 2
-          }
-
-        ],
+        articleType: [],
         editorContentHtml: null,
       }
+    },
+    mounted(){
+      this.findArticleType();
     },
 
     methods: {
@@ -143,6 +138,26 @@
 
         })
 
+      },
+      findArticleType(){
+        let msg=qs.stringify({
+          currentPage:1,
+          pageSize:100
+        })
+        findAll(msg).then((res)=>{
+            this.articleType=[];
+            let {code,articleType}=res;
+            let cateNames=articleType.rows;
+            if(code=="200"){
+                  for(let i=0;i<cateNames.length;i++){
+                     this.articleType.push({
+                      value:cateNames[i].id,
+                      label:cateNames[i].categoryName
+                    });
+                  }
+            }
+      
+        })
       },
       goArticle() {
         this.$router.push({
