@@ -188,6 +188,9 @@
       currentChange(page) {
         this.currentPage = page;
         this.findAll();
+      },
+      handleSelectionChange(){
+        
       }
     }
   }

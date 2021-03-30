@@ -27,12 +27,12 @@
         <el-table-column prop="title" label="文章名称" width="300" :render-header="renderHeader" align="left">
         </el-table-column>
 
-         <el-table-column prop="articleTypeId" label="标签" width="180" align="left">
+         <el-table-column prop="category.categoryName" label="标签" width="180" align="left">
         </el-table-column>
 
         <el-table-column prop="vistNum" label="阅读量" width="180" align="left">
         </el-table-column>
-        <el-table-column prop="userId" label="作者" align="right">
+        <el-table-column prop="user.userName" label="作者" align="right">
         </el-table-column>
         <el-table-column prop="createdAt" label="发布时间" align="right" :formatter="Tableformatter">
         </el-table-column>
@@ -94,7 +94,9 @@
             artcleType: '前端',
             vistNum: '2020',
             CreaterName: "admin",
-            artcleCreat:"2021-02-23"
+            artcleCreat:"2021-02-23",
+            category:{},
+            user:{}
           }],
         currentPage: 1,
         pageSize: 10,
@@ -159,6 +161,7 @@
                   articleTypeId: el.articleTypeId,
                   vistNum: el.visitNum,
                   userId: el.userId,
+                  user:el.user,
                   content:el.content,
                   createdAt:el.createdAt
                 }
@@ -216,12 +219,16 @@
             } = res;
             if (code == "200") {
               let new_list = data.rows.map((el, index) => {
+              
+                
                return {
                   id: el.id,
                   title: el.title,
                   articleTypeId: el.articleTypeId,
+                  category:el.articleType,
                   vistNum: el.visitNum,
                   userId: el.userId,
+                  user:el.user,
                   content:el.content,
                   createdAt:el.createdAt
                 }

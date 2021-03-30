@@ -49,6 +49,7 @@
     upBook
   } from '@/api/article.js'
   import qs from 'querystring'
+  import { findAll } from "@/api/articleType.js";
   import 'mavon-editor/dist/css/index.css'
   export default {
     data() {
@@ -58,7 +59,7 @@
         form: {
           id: "",
           title: "",
-          articleTypeId: "1",
+          articleTypeId: "",
           userId: "1",
           editorContent: "",
           bookPreview: "",
