@@ -34,9 +34,11 @@
               <span class="iconfont" :class="scope.row.icon" style="font-size:16px;"></span>
            </template>
 
-          
 
 
+        </el-table-column>
+
+         <el-table-column prop="leftNavUrl" label="前端跳转路径" align="left">
         </el-table-column>
     
         <el-table-column prop="artcleTypeCreat" label="创建时间" align="right" :formatter="Tableformatter">
@@ -68,6 +70,10 @@
          <el-form-item label="图标代码">
           <el-input v-model="form.icon"></el-input>
         </el-form-item>
+
+         <el-form-item label="nuxt跳转路径">
+          <el-input v-model="form.leftNavUrl"></el-input>
+        </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
@@ -96,7 +102,8 @@
         form: {
           id: "",
           categoryName: "",
-          icon:""
+          icon:"",
+          leftNavUrl:""
         },
         // 0代表新增操作,1代码修改操作
         submitState: 0,
@@ -104,7 +111,8 @@
             artcleTypename: '王大胖',
             artcleTypeNum: '18',
             artcleTypeCreat: '2020-2-22',
-            artcleTypeCreatName: "admin"
+            artcleTypeCreatName: "admin",
+            leftNavUrl:""
           }],
         currentPage: 1,
         pageSize: 10,
@@ -170,7 +178,8 @@
                   artcleTypeNum: el.categoryNum,
                   artcleTypeCreat: el.createdAt,
                   artcleTypeCreatName: el.categoryCreater,
-                  icon:el.icon
+                  icon:el.icon,
+                  leftNavUrl:el.leftNavUrl
                 }
               })
               this.tableData = new_list;
@@ -232,7 +241,8 @@
                   artcleTypeNum: el.categoryNum,
                   artcleTypeCreat: el.createdAt,
                   artcleTypeCreatName: el.categoryCreater,
-                  icon:el.icon
+                  icon:el.icon,
+                  leftNavUrl:el.leftNavUrl
                 }
               })
               this.tableData = new_list;
@@ -257,7 +267,8 @@
         let new_row = Object.assign({}, row);
         this.form.id = new_row.id;
         this.form.categoryName = new_row.artcleTypename;
-        this.form.icon=new_row.icon
+        this.form.icon=new_row.icon;
+        this.form.leftNavUrl=new_row.leftNavUrl;
       },
       cleanRow() {
         for (let key in this.form) {
@@ -296,7 +307,8 @@
             let msg_create = qs.stringify({
               categoryName: this.form.categoryName,
               categoryCreater: "admin",
-              icon:this.form.icon
+              icon:this.form.icon,
+              leftNavUrl:this.form.leftNavUrl
             });
             create(msg_create).then((res) => {
               let {
@@ -319,7 +331,8 @@
               id: this.form.id,
               categoryName: this.form.categoryName,
               categoryCreater: "admin",
-              icon:this.form.icon
+              icon:this.form.icon,
+              leftNavUrl:this.form.leftNavUrl
             });
             updata(msg_updata).then((res) => {
               let {
