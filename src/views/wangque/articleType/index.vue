@@ -26,8 +26,19 @@
         </el-table-column>
         <el-table-column prop="artcleTypename" label="类别名称" width="180" :render-header="renderHeader" align="left">
         </el-table-column>
-        <el-table-column prop="artcleTypeNum" label="文章数量" width="180" align="left">
+
+        <el-table-column label="图标" align="left">
+
+           <template slot-scope="scope">
+
+              <span class="iconfont" :class="scope.row.icon" style="font-size:16px;"></span>
+           </template>
+
+          
+
+
         </el-table-column>
+    
         <el-table-column prop="artcleTypeCreat" label="创建时间" align="right" :formatter="Tableformatter">
         </el-table-column>
 
@@ -52,6 +63,10 @@
       <el-form ref="form" :model="form" label-width="80px">
         <el-form-item label="类别名称">
           <el-input v-model="form.categoryName"></el-input>
+        </el-form-item>
+
+         <el-form-item label="图标代码">
+          <el-input v-model="form.icon"></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
@@ -80,7 +95,8 @@
         multipleSelection: [],
         form: {
           id: "",
-          categoryName: ""
+          categoryName: "",
+          icon:""
         },
         // 0代表新增操作,1代码修改操作
         submitState: 0,
@@ -153,7 +169,8 @@
                   artcleTypename: el.categoryName,
                   artcleTypeNum: el.categoryNum,
                   artcleTypeCreat: el.createdAt,
-                  artcleTypeCreatName: el.categoryCreater
+                  artcleTypeCreatName: el.categoryCreater,
+                  icon:el.icon
                 }
               })
               this.tableData = new_list;
@@ -214,7 +231,8 @@
                   artcleTypename: el.categoryName,
                   artcleTypeNum: el.categoryNum,
                   artcleTypeCreat: el.createdAt,
-                  artcleTypeCreatName: el.categoryCreater
+                  artcleTypeCreatName: el.categoryCreater,
+                  icon:el.icon
                 }
               })
               this.tableData = new_list;
@@ -239,6 +257,7 @@
         let new_row = Object.assign({}, row);
         this.form.id = new_row.id;
         this.form.categoryName = new_row.artcleTypename;
+        this.form.icon=new_row.icon
       },
       cleanRow() {
         for (let key in this.form) {
@@ -276,7 +295,8 @@
 
             let msg_create = qs.stringify({
               categoryName: this.form.categoryName,
-              categoryCreater: "admin"
+              categoryCreater: "admin",
+              icon:this.form.icon
             });
             create(msg_create).then((res) => {
               let {
@@ -298,7 +318,8 @@
             let msg_updata = qs.stringify({
               id: this.form.id,
               categoryName: this.form.categoryName,
-              categoryCreater: "admin"
+              categoryCreater: "admin",
+              icon:this.form.icon
             });
             updata(msg_updata).then((res) => {
               let {

@@ -152,7 +152,7 @@ export const constantRoutes = [{
           import('@/views/wangque/articleType/index.vue'),
         name: 'articleType',
         meta: {
-          title: '文章类别',
+          title: '归档',
           icon: 'type'
         }
       },

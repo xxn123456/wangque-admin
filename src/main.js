@@ -30,6 +30,10 @@ Vue.use(mavonEditor)
 import { vueBaberrage } from 'vue-baberrage'
 Vue.use(vueBaberrage)
 
+// 导入阿里图标
+
+import './assets/icon/iconfont.css'
+
 // 导入表格
 
 /**
