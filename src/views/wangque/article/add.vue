@@ -274,9 +274,9 @@
 
     .mavon-boy {
 
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
+    
+      min-height: 400px;
+     
 
 
 
