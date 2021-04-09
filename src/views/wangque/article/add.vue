@@ -50,6 +50,7 @@
   import { findAll } from "@/api/articleType.js";
   import qs from 'querystring'
   import 'mavon-editor/dist/css/index.css'
+  import IMGURL from "@/utils/setDeafult.js";
   export default {
     data() {
       return {
@@ -62,12 +63,18 @@
           userId: "1",
           editorContent: "",
           bookPreview: "",
-          book:"../other/article-pic.png",
+          book:"http://shutiaogege.top/wangque_admin/other/article-pic.png",
           bookUrl:""
         },
         articleType: [],
         editorContentHtml: null,
       }
+    },
+    filters:{
+      handelImg(val){
+        return IMGURL + val
+      }
+
     },
     mounted(){
       this.findArticleType();

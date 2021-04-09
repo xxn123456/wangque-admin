@@ -20,9 +20,12 @@ router.beforeEach(async (to, from, next) => {
   // start progress bar
   NProgress.start()
   document.title = getPageTitle(to.meta.title);
-  const hasToken = getToken()
+  const hasToken = getToken();
+ 
+ 
+  
   if (hasToken) {
-    if (to.path === '/login') {
+    if (to.path == '/login' || to.path == '/') {
       next({
         path: '/blog/homeSwiper'
       })
@@ -39,8 +42,6 @@ router.beforeEach(async (to, from, next) => {
        
           const { roles } = await store.dispatch('user/getInfo');
 
-       
-
           const accessRoutes = await store.dispatch('permission/generateRoutes', roles);
 
         
@@ -56,6 +57,7 @@ router.beforeEach(async (to, from, next) => {
           })
 
         } catch (error) {
+         
           await store.dispatch('user/resetToken')
           Message.error(error || 'Has Error')
           next(`/login?redirect=${to.path}`)

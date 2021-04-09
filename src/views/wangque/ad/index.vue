@@ -59,7 +59,7 @@
           <el-input v-model="form.title"></el-input>
         </el-form-item>
 
-        <el-form-item label="链接地址">
+        <el-form-item label="url">
           <el-input v-model="form.url"></el-input>
         </el-form-item>
 
@@ -72,7 +72,7 @@
 
 
         <el-form-item label="轮播图">
-          <el-upload class="upload-demo" action="http://localhost:3000/upload/carousel" multiple :limit="1"
+          <el-upload class="upload-demo" :action="upApi" multiple :limit="1"
             :on-exceed="handleExceed" :file-list="form.fileList" :on-success="handleSuccess">
             <el-button size="small" type="primary">点击上传</el-button>
             <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
@@ -139,9 +139,16 @@
     },
     filters: {
       handelCarouselImg(val) {
-        console.log("IMGURL", IMGURL);
+       
         return IMGURL + val
+      },
+   
 
+
+    },
+    computed:{
+      upApi(){
+           return IMGURL + '/upload/carousel'
       }
 
     },

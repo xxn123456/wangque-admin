@@ -51,10 +51,10 @@
   import qs from 'querystring'
   import { findAll } from "@/api/articleType.js";
   import 'mavon-editor/dist/css/index.css'
+  import {IMGURL} from "@/utils/setDeafult.js";
   export default {
     data() {
       return {
-
         img_file: {},
         form: {
           id: "",
@@ -63,7 +63,7 @@
           userId: "1",
           editorContent: "",
           bookPreview: "",
-          book:"../other/article-pic.png",
+          book:'http://shutiaogege.top/wangque_admin/other/article-pic.png',
           bookUrl:""
         },
         articleType: [{
