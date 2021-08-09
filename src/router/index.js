@@ -84,6 +84,28 @@ export const constantRoutes = [{
     },
     hidden: true
   },
+
+
+  {
+    path: '/jobCreate',
+    component: () =>
+      import('@/views/job/article/add.vue'),
+    meta: {
+      title: '发布作品',
+      icon: 'blog'
+    },
+    hidden: true
+  },
+  {
+    path: '/jobEdit',
+    component: () =>
+      import('@/views/job/article/edit.vue'),
+    meta: {
+      title: '编辑作品',
+      icon: 'blog'
+    },
+    hidden: true
+  },
   {
     path: '/blog',
     component: Layout,
@@ -176,16 +198,16 @@ export const constantRoutes = [{
           icon: 'music'
         }
       },
-      {
-        path: 'dan',
-        component: () =>
-          import('@/views/wangque/dan/index.vue'),
-        name: 'dan',
-        meta: {
-          title: '弹幕管理',
-          icon: 'dan'
-        }
-      },
+      // {
+      //   path: 'dan',
+      //   component: () =>
+      //     import('@/views/wangque/dan/index.vue'),
+      //   name: 'dan',
+      //   meta: {
+      //     title: '弹幕管理',
+      //     icon: 'dan'
+      //   }
+      // },
       {
         path: 'toYou',
         component: () =>
@@ -209,6 +231,59 @@ export const constantRoutes = [{
       }
 
     ]
+  },
+  {
+    path: '/job',
+    component: Layout,
+    redirect: '/index',
+    meta: {
+      title: '简历系统',
+      icon: 'blog'
+    },
+    children:[
+      {
+        path: 'index',
+        component: () =>
+          import('@/views/job/article/index.vue'),
+        name: 'job_index',
+        meta: {
+          title: '作品',
+          icon: 'article'
+        }
+      },
+      {
+        path: 'kill',
+        component: () =>
+          import('@/views/job/kill/index.vue'),
+        name: 'job_kill',
+        meta: {
+          title: '技能',
+          icon: 'article'
+        }
+      },
+      {
+        path: 'exp',
+        component: () =>
+          import('@/views/job/exp/index.vue'),
+        name: 'job_exp',
+        meta: {
+          title: '工作经历',
+          icon: 'article'
+        }
+      },
+
+      {
+        path: 'info',
+        component: () =>
+          import('@/views/job/info/index.vue'),
+        name: 'job_info',
+        meta: {
+          title: '个人简介',
+          icon: 'article'
+        }
+      },
+    ]
+    
   },
   {
     path: '/401',
