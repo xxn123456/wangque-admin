@@ -2,7 +2,7 @@
   <div class="table-wrap">
     <div class="table-handle-btns">
       <!-- <el-button type="primary" @click="handleAdd">新增</el-button> -->
-      <el-button @click="batchDel">批量删除</el-button>
+      <el-button @click="batchDel" v-permission="['aa']">批量删除</el-button>
       <!-- <el-button>导出</el-button> -->
     </div>
     <div class="search">
@@ -37,7 +37,7 @@
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
             <!-- <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button> -->
-            <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+            <el-button size="mini"  type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>

@@ -34,6 +34,11 @@ Vue.use(vueBaberrage)
 
 import './assets/icon/iconfont.css'
 
+// 自定义指令
+import permission_btn from './directive/permission'
+
+Vue.use(permission_btn)
+
 // 导入表格
 
 /**

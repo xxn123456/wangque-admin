@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="mavon-boy">
-      <mavon-editor v-model='form.editorContent' :subfield="true" :ishljs="true" :navigation="true" ref=md
+      <mavon-editor v-model='form.editorContent' :subfield="false" :ishljs="true"  ref=md
         @imgAdd="$imgAdd" @imgDel="$imgDel" @change="changeData">
       </mavon-editor>
 
