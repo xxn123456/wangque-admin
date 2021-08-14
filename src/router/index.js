@@ -189,6 +189,16 @@ export const constantRoutes = [{
         }
       },
       {
+        path: 'toYou',
+        component: () =>
+          import('@/views/wangque/msg/index.vue'),
+        name: 'toYou',
+        meta: {
+          title: '评价',
+          icon: 'toyou'
+        }
+      },
+      {
         path: 'music',
         component: () =>
           import('@/views/wangque/music/index.vue'),
@@ -208,16 +218,7 @@ export const constantRoutes = [{
       //     icon: 'dan'
       //   }
       // },
-      {
-        path: 'toYou',
-        component: () =>
-          import('@/views/wangque/msg/index.vue'),
-        name: 'toYou',
-        meta: {
-          title: '评价',
-          icon: 'toyou'
-        }
-      },
+     
 
       {
         path: 'sure',

@@ -41,7 +41,7 @@ const actions = {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
       // 将json 字符串转化为x-from
-      const user = querystring.stringify({ userName: username.trim(), password: password })
+      const user = querystring.stringify({ username: username.trim(), password: password })
 
       console.log(user)
 

@@ -26,15 +26,11 @@
         </el-table-column>
         <el-table-column prop="content" label="评价内容" width="180" :render-header="renderHeader" align="left">
         </el-table-column>
-        <el-table-column prop="articleId" label="文章" width="180" align="left">
+        <el-table-column prop="article.title" label="评论的文章" width="180" align="left">
         </el-table-column>
-
-         <el-table-column prop="qq" label="qq" width="180" align="left">
+         <el-table-column prop="user.userName" label="评价人" width="180" align="right">
         </el-table-column>
-
-         <el-table-column prop="qqAvtor" label="评价人" width="180" align="right">
-        </el-table-column>
-        <el-table-column prop="artcleTypeCreat" label="创建时间" align="right" :formatter="Tableformatter">
+        <el-table-column prop="artcleTypeCreat" label="评价时间" align="right" :formatter="Tableformatter">
         </el-table-column>
 
     
@@ -216,9 +212,8 @@
                 return {
                   id: el.id,
                   content: el.content,
-                  articleId: el.articleId,
-                  qq:el.qq,
-                  qqAvtor:el.qqAvtor,
+                  article: el.blog,
+                  user:el.user,
                   artcleTypeCreat: el.createdAt
                 }
               })
