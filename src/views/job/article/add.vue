@@ -8,15 +8,7 @@
       </div>
 
       <div class="article-type">
-        <div class="article-about">
-         
-
-          <span class="grid">作品封面：</span>
-          <input type="file" style="display:none;" id="file" />
-           <div v-if="form.book==null" @click="upBook">上传</div>
-          <img v-else :src="form.book" alt="暂无封面">
-
-        </div>
+       
 
 
         <div class="article-handel">
@@ -47,7 +39,7 @@
  
   import qs from 'querystring'
   import 'mavon-editor/dist/css/index.css'
-  import IMGURL from "@/utils/setDeafult.js";
+
   export default {
     data() {
       return {
@@ -185,13 +177,14 @@
 
     .top {
       width: 100%;
-      height: 240px;
+      height: 120px;
       display: flex;
       flex-direction: row;
+      justify-content: space-between;
       flex-wrap: wrap;
 
       .article-name {
-        width: 100%;
+        width: 500px;
         margin-right: 15px;
 
         .a-title {
@@ -218,7 +211,7 @@
 
 
       .article-type {
-        width: 100%;
+        width: 300px;
         height: 100px;
         position: relative;
         z-index: 1501;

@@ -21,22 +21,21 @@
         </el-table-column>
         <el-table-column type="index" width="50">
         </el-table-column>
-        <el-table-column prop="url" label="请求接口"  align="left">
+        <el-table-column prop="url" label="请求接口"  align="center">
         </el-table-column>
 
-         <el-table-column prop="method" label="传参"  align="left">
+        
+
+        <el-table-column prop="desc" label="请求参数"  align="center">
         </el-table-column>
 
-        <el-table-column prop="desc" label="请求参数"  align="left">
-        </el-table-column>
-
-        <el-table-column prop="host" label="请求地址"  align="right">
+        <el-table-column prop="host" label="请求地址"  align="center">
         </el-table-column>
        
 
-        <el-table-column prop="nickname" label="操作的用户" align="right">
+        <el-table-column prop="nickname" label="操作的用户" align="center">
         </el-table-column>
-        <el-table-column prop="createdAt" label="请求时间" align="right">
+        <el-table-column prop="createdAt" label="请求时间" align="center">
         </el-table-column>
 
       </el-table>
@@ -126,17 +125,20 @@
             } = res;
             if (code == "200") {
 
-              let new_list = data.map((el, index) => {
+            let new_list = data.rows.map((el, index) => {
                 return {
                   id: el._id,
-                  color: el.color,
-                  biuContent: el.biuContent,
-                  author: "游客",
+                  url: el.url,
+                  method: el.biuContent,
+                  desc: el.desc,
+                  host: el.host,
+                  nickname: el.nickname,
                   createdAt: el.createdAt
                 }
               })
+
               this.tableData = new_list;
-              this.total = res.total;
+              this.total = data.count;
             } else {
               this.$message("获取分页失败")
             }
@@ -152,15 +154,14 @@
           currentPage: this.currentPage,
           pageSize: this.pageSize
         })
-        return new Promise((resolve, reject) => {
-          findAll(msg).then((res) => {
+       findAll(msg).then((res) => {
             let {
               data,
               code
             } = res;
             if (code == "200") {
 
-              let new_list = data.map((el, index) => {
+              let new_list = data.rows.map((el, index) => {
                 return {
                   id: el._id,
                   url: el.url,
@@ -171,14 +172,14 @@
                   createdAt: el.createdAt
                 }
               })
+
               this.tableData = new_list;
-              this.total = res.total;
+              this.total = data.count;
             } else {
               this.$message("获取分页失败")
             }
 
           })
-        })
 
       },
 

@@ -3,7 +3,7 @@
     <div class="table-handle-btns">
       <el-button type="primary" @click="handleAdd">新增</el-button>
       <el-button @click="batchDel">删除</el-button>
-      <!-- <el-button>导出</el-button> -->
+     
     </div>
     <div class="search">
       <span class="demonstration">创建时间：</span>
@@ -24,16 +24,15 @@
         </el-table-column>
         <el-table-column type="index" width="50">
         </el-table-column>
-        <el-table-column prop="company" label="公司" width="180" :render-header="renderHeader" align="left">
+        <el-table-column prop="company" label="公司" width="180" :render-header="renderHeader" align="center">
         </el-table-column>
 
-          <el-table-column prop="work" label="工作"  align="left">
+          <el-table-column prop="work" label="工作" align="center">
         </el-table-column>
 
-          <el-table-column prop="exp" label="经验"  align="left">
-        </el-table-column>
+       
 
-          <el-table-column prop="time" label="年份" align="right">
+          <el-table-column prop="time" label="年份" align="center">
         </el-table-column>
 
        
@@ -42,7 +41,7 @@
 
       
     
-        <el-table-column prop="artcleTypeCreat" label="创建时间" align="right" :formatter="Tableformatter">
+        <el-table-column prop="artcleTypeCreat" label="创建时间" align="center" :formatter="Tableformatter">
         </el-table-column>
 
        
@@ -126,8 +125,7 @@
     },
     mounted() {
       this.findAll();
-      let test = new Date('2017-2-1').getTime();
-      console.log("转换的时间", test)
+     
     },
     methods: {
       // 构建表格提示标签
@@ -261,13 +259,12 @@
       },
       // 进行编辑
       handleEdit(index, row) {
+
+        console.log("得到数据",row);
         this.dialogVisible = true;
         this.submitState = 1;
         let new_row = Object.assign({}, row);
-        this.form.id = new_row.id;
-        this.form.categoryName = new_row.artcleTypename;
-        this.form.icon=new_row.icon;
-        this.form.leftNavUrl=new_row.leftNavUrl;
+        this.form=new_row;
       },
       cleanRow() {
         for (let key in this.form) {

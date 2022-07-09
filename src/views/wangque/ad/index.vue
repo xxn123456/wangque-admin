@@ -15,26 +15,24 @@
         </el-table-column>
         <el-table-column type="index" width="50">
         </el-table-column>
-        <el-table-column prop="title" label="轮播标题" width="180" align="left">
+        <el-table-column prop="title" label="轮播标题" width="180" align="center">
         </el-table-column>
-        <el-table-column label="图片预览" width="300" align="left">
+        <el-table-column label="图片预览" width="300" align="center">
           <template slot-scope="scope">
-            <img class="carousel-item-img" :src="scope.row.pic|handelCarouselImg" alt="默认图片地址">
+            <img class="carousel-item-img" :src="scope.row.pic" alt="默认图片地址">
           </template>
 
         </el-table-column>
-        <el-table-column prop="url" label="轮播url" align="left" :formatter="Tableformatter">
+        <el-table-column prop="url" label="轮播url" align="center" :formatter="Tableformatter">
         </el-table-column>
 
-        <el-table-column prop="active" label="次序" align="left">
+        <el-table-column prop="active" label="次序" align="center">
         </el-table-column>
-        <el-table-column prop="userId" label="创建人" align="right">
-        </el-table-column>
+      
 
 
 
-
-        <el-table-column prop="createdAt" label="创建时间" align="right">
+        <el-table-column prop="createdAt" label="创建时间" align="center">
         </el-table-column>
 
 
@@ -134,8 +132,7 @@
     },
     mounted() {
       this.findAll();
-      let test = new Date('2017-2-1').getTime();
-      console.log("转换的时间", test)
+    
     },
     filters: {
       handelCarouselImg(val) {

@@ -24,17 +24,14 @@
         </el-table-column>
         <el-table-column type="index" width="50">
         </el-table-column>
-        <el-table-column prop="title" label="文章名称" width="300" :render-header="renderHeader" align="left">
+        <el-table-column prop="title" label="文章名称" width="300" align="center" :render-header="renderHeader">
         </el-table-column>
 
-         <el-table-column prop="category.categoryName" label="标签" width="180" align="left">
+        
+        <el-table-column prop="vistNum" label="阅读量" width="180" align="center">
         </el-table-column>
-
-        <el-table-column prop="vistNum" label="阅读量" width="180" align="left">
-        </el-table-column>
-        <el-table-column prop="user.userName" label="作者" align="right">
-        </el-table-column>
-        <el-table-column prop="createdAt" label="发布时间" align="right" :formatter="Tableformatter">
+       
+        <el-table-column prop="createdAt" label="发布时间" align="center" :formatter="Tableformatter">
         </el-table-column>
 
         

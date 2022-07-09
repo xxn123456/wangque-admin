@@ -9,15 +9,7 @@
       </div>
 
       <div class="article-type">
-        <div class="article-about">
-          
-
-          <span class="grid">封面</span>
-          <input type="file" style="display:none;" id="file" />
-          <img :src="form.book" alt="暂无封面" @click="upBook">
-
-        </div>
-
+        
         <div class="article-handel">
           <el-button type="primary" round @click="saveArticle">更新文章</el-button>
           <el-button round>清空内容</el-button>
@@ -46,7 +38,6 @@
   } from '@/api/job.js'
   import qs from 'querystring'
   import 'mavon-editor/dist/css/index.css'
-  import {IMGURL} from "@/utils/setDeafult.js";
   export default {
     data() {
       return {
@@ -89,6 +80,8 @@
           } = res;
           if (code == "200") {
             this.form.editorContent = res.data.content;
+
+            document.getElementById('title').innerText=res.data.title
           } else {
             this.$message("获取详情失败")
           }
@@ -225,13 +218,14 @@
 
     .top {
       width: 100%;
-      height: 240px;
+      height: 120px;
       display: flex;
       flex-direction: row;
+      justify-content: space-between;
       flex-wrap: wrap;
 
       .article-name {
-        width: 100%;
+        width: 500px;
         margin-right: 15px;
 
         .a-title {
@@ -258,7 +252,7 @@
 
 
       .article-type {
-        width: 100%;
+        width: 300px;
         height: 100px;
         position: relative;
         z-index: 1501;

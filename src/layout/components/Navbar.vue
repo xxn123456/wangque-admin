@@ -10,16 +10,8 @@
 
     <div class="right-menu">
       <template v-if="device!=='mobile'">
-        <!-- <search id="header-search" class="right-menu-item" /> -->
-        
-
-        <error-log class="errLog-container right-menu-item hover-effect" /> 
-
-        <screenfull id="screenfull" class="right-menu-item hover-effect" />
-
-        <el-tooltip content="Global Size" effect="dark" placement="bottom">
-          <size-select id="size-select" class="right-menu-item hover-effect" />
-        </el-tooltip>
+      
+      
          <div class="avatar-wrapper errLog-container right-menu-item hover-effect">
           <img :src="userLogo" class="user-avatar">
         
@@ -72,7 +64,7 @@ export default {
       menuId: state => state.tagsView.menuId
     }),
     userLogo() {
-      return imgUrl + this.userPic
+      return this.userPic
     }
   },
   data() {
@@ -143,6 +135,8 @@ export default {
       line-height: 50px;
       font-size: 16px;
       color: #555555;
+      text-align: right;
+      padding-right: 10px;
 
       &:focus {
         outline: none;

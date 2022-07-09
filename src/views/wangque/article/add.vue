@@ -15,9 +15,7 @@
             </el-option>
           </el-select>
 
-          <span class="grid">封面</span>
-          <input type="file" style="display:none;" id="file" />
-          <img :src="form.book" alt="暂无封面" @click="upBook">
+        
 
         </div>
 

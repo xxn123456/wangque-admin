@@ -24,10 +24,10 @@
         </el-table-column>
         <el-table-column type="index" width="50">
         </el-table-column>
-        <el-table-column prop="artcleTypename" label="类别名称" width="180" :render-header="renderHeader" align="left">
+        <el-table-column prop="artcleTypename" label="类别名称" width="180" :render-header="renderHeader" align="center">
         </el-table-column>
 
-        <el-table-column label="图标" align="left">
+        <el-table-column label="图标" align="center">
 
            <template slot-scope="scope">
 
@@ -38,15 +38,13 @@
 
         </el-table-column>
 
-         <el-table-column prop="leftNavUrl" label="前端跳转路径" align="left">
+         <el-table-column prop="leftNavUrl" label="前端跳转路径" align="center">
         </el-table-column>
     
-        <el-table-column prop="artcleTypeCreat" label="创建时间" align="right" :formatter="Tableformatter">
+        <el-table-column prop="artcleTypeCreat" label="创建时间" align="center" :formatter="Tableformatter">
         </el-table-column>
 
-        <el-table-column prop="artcleTypeCreatName" label="创建人" align="right">
-        </el-table-column>
-
+       
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
             <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
@@ -124,8 +122,7 @@
     },
     mounted() {
       this.findAll();
-      let test = new Date('2017-2-1').getTime();
-      console.log("转换的时间", test)
+     
     },
     methods: {
       // 构建表格提示标签

@@ -135,8 +135,7 @@
     },
     mounted() {
       this.findAll();
-      let test = new Date('2017-2-1').getTime();
-      console.log("转换的时间", test)
+    
     },
     methods: {
       // 构建表格提示标签
